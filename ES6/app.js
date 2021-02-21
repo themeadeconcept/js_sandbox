@@ -1,48 +1,55 @@
-// const sayHello = function () {
-//   console.log("Hello");
-// };
+// Iterator Example
+// function nameIterator(names) {
+//   let nextIndex = 0;
 
-// const sayHello = () => {
-//   console.log("Hello");
-// };
+//   return {
+//     next: function () {
+//       return nextIndex < names.length
+//         ? { value: names[nextIndex++], done: false }
+//         : { done: true };
+//     },
+//   };
+// }
 
-//One Line function, does not need braces
-// const sayHello = () => console.log("Hello");
+// // Create an array of names
+// const namesArr = ["Jack", "Jill", "John"];
+// // Initialize iterator and pass in names array
+// const names = nameIterator(namesArr);
 
-// One line returns
-// const sayHello = () => "Hello";
+// console.log(names.next().value);
+// console.log(names.next().value);
+// console.log(names.next().value);
+// console.log(names.next());
 
-// Same as above
-// const sayHello = function () {
-//   return "Hello";
-// };
+// Generator Example - * depicts generator
+// function* sayNames() {
+// yield "Jack";
+// yield "Jill";
+// yield "John";
+// }
+//
+// const name = sayNames();
+// console.log(name.next().value);
+// console.log(name.next().value);
+// console.log(name.next().value);
+//
 
-// Can return object literal by wrapping in parenthesis (Return Object)
-// const sayHello = () => ({
-//   msg: "Hello",
-// });
+// ID Creator
+function* createIds() {
+  let index = 0;
 
-// If passing in a single parameter, parenthesis can be omitted
-// const sayHello = (name) => console.log(`Hello ${name}`);
+  while (true) {
+    yield index++;
+  }
+}
 
-// Multiple params NEED parenthesis
-// const sayHello = (firstName, lastName) =>
-//   console.log(`Hello ${firstName} ${lastName}`);
+const gen = createIds();
 
-// sayHello("Torrey", "Meade");
-
-const users = ["Nathan", "John", "William"];
-
-// const nameLengths = users.map(function (name) {
-//   return name.length;
-// });
-
-// Shorter
-// const nameLengths = users.map((name) => {
-//   return name.length;
-// });
-
-// Shortest
-const nameLengths = users.map((name) => name.length);
-
-console.log(nameLengths);
+console.log(gen.next().value);
+console.log(gen.next().value);
+console.log(gen.next().value);
+console.log(gen.next().value);
+console.log(gen.next().value);
+console.log(gen.next().value);
+console.log(gen.next().value);
+console.log(gen.next().value);
