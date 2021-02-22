@@ -1,55 +1,49 @@
-// Iterator Example
-// function nameIterator(names) {
-//   let nextIndex = 0;
+// SETS - Store unique values of any type
 
-//   return {
-//     next: function () {
-//       return nextIndex < names.length
-//         ? { value: names[nextIndex++], done: false }
-//         : { done: true };
-//     },
-//   };
-// }
+// set is an object that must be instantiated
+const set1 = new Set();
 
-// // Create an array of names
-// const namesArr = ["Jack", "Jill", "John"];
-// // Initialize iterator and pass in names array
-// const names = nameIterator(namesArr);
+// Add values to set
+set1.add(100);
+set1.add("A string");
+set1.add({ name: "John" });
+set1.add(true);
+// Set makes sure that only unique values are added.  No duplicates.
+set1.add(100);
+// Logging set now, would still yield 4 items
 
-// console.log(names.next().value);
-// console.log(names.next().value);
-// console.log(names.next().value);
-// console.log(names.next());
+// Another way to place values into a set
+const set2 = new Set([1, true, "string"]);
 
-// Generator Example - * depicts generator
-// function* sayNames() {
-// yield "Jack";
-// yield "Jill";
-// yield "John";
-// }
-//
-// const name = sayNames();
-// console.log(name.next().value);
-// console.log(name.next().value);
-// console.log(name.next().value);
-//
+// console.log(set1);
+// console.log(set2);
 
-// ID Creator
-function* createIds() {
-  let index = 0;
+// // Get count
+// console.log(set1.size); // yields 4
 
-  while (true) {
-    yield index++;
-  }
+// Check for values
+// console.log(set1.has(100)); // yields true
+// console.log(set1.has(50 + 50)); //yields true
+// console.log(set1.has({ name: "John" })); // yields false because it is not a primitive value
+
+// Delete from a set
+set1.delete(100);
+
+// console.log(set1); // yields 3
+
+// ITERATING THROUGH SETS
+
+// For...of
+// Sets are not key values.  they are single values.  so set1.values would yield the same thing (accessing any property would yield the same)
+for (let item of set1) {
+  console.log(item);
 }
 
-const gen = createIds();
+// ForEach loop
+set1.forEach((value) => {
+  console.log(value);
+});
 
-console.log(gen.next().value);
-console.log(gen.next().value);
-console.log(gen.next().value);
-console.log(gen.next().value);
-console.log(gen.next().value);
-console.log(gen.next().value);
-console.log(gen.next().value);
-console.log(gen.next().value);
+// CONVERT SET TO AN ARRAY
+const setArr = Array.from(set1);
+console.log(setArr);
